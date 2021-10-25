@@ -7,4 +7,4 @@ elif a%b == 0:
   print(a/b, "Остатка нет ")  
 
 elif a%b != 0:
-  print (a/b, "Остаток ест:", a%b )
+  print (a/b, "Остаток ест:", a%b)
