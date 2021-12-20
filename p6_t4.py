@@ -4,7 +4,7 @@ import math
 from math  import sqrt
 n = int(input()) 
 b=0.02
-N=1000
+N=100
 phi0=0.01
 phi1=8*math.pi
 phi= np.linspace(phi0,phi1,N)
