@@ -1,2 +1,1 @@
-import math 
-a=float(input("Введите число: "))
+https://replit.com/@KroniXxX/mathmodeling#projoct.py
