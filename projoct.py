@@ -6,11 +6,11 @@ v=int(input('скрость тела:'))
 if (v < V1):
   circle1 = plt.Circle((5 , 5), 1, color='y',fill=False)
 
-  circle2 = plt.Circle((5 , 5), 2, color='y' ,fill=False)
+  circle2 = plt.Circle((4.5 , 5), 2, color='y' ,fill=False)
 
-  circle3 = plt.Circle((5 , 5), 3, color='y' ,fill=False)
+  circle3 = plt.Circle((4 , 5), 3, color='y' ,fill=False)
 
-  circle4 = plt.Circle((5 , 5), 4, color='y' ,fill=False)
+  circle4 = plt.Circle((3.5 , 5), 4, color='y' ,fill=False)
 
   fig, ax = plt.subplots() 
   ax.set_xlim((0, 10))
@@ -27,13 +27,13 @@ if (v < V1):
 
 
 elif (v == V1):
-  circle1 = plt.Circle((10 , 7), 1, color='y',fill=False)
+  circle1 = plt.Circle((17.5 , 12.5), 1, color='y',fill=False)
 
-  circle2 = plt.Circle((9 , 7), 2, color='y' ,fill=False)
+  circle2 = plt.Circle((16.5 , 12.5), 2, color='y' ,fill=False)
 
-  circle3 = plt.Circle((7 , 7), 4, color='y' ,fill=False)
+  circle3 = plt.Circle((14.5 , 12.5), 4, color='y' ,fill=False)
 
-  circle4 = plt.Circle((4 , 7), 8, color='y' ,fill=False)
+  circle4 = plt.Circle((10.5 , 12.5), 8, color='y' ,fill=False)
 
   fig, ax = plt.subplots() 
   ax.set_xlim((0, 25))
@@ -51,7 +51,7 @@ elif (v == V1):
 
 
 elif (v > V1):
-  circle1 = plt.Circle((6 , 10), 1, color='y',fill=False)
+  circle1 = plt.Circle((6.5 , 10), 1, color='y',fill=False)
 
   circle2 = plt.Circle((8 , 10), 2, color='y' ,fill=False)
 
