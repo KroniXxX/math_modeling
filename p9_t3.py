@@ -1,39 +1,34 @@
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
+import math
 
-x=np.arange(-5, 5, 0.01)
+x=np.arange(-1, 1, 0.01)
 
 
 
 
 def diff_func(v, x):
-  y, z = v
-  dydx= y**2 * z
-  dzdx = z/x - y * z**2
-  return dydx, dzdx
+  y, dy = v
+  dydt = x
+  dxdt = np.sin(x) + np.cos(x)
+  return dydt , dxdt
 
 
 
-y0 = 1
-z0 = -3
+dy0 = 0.
+y0 = 3
 
 
-v0 = y0, z0
+v0 = y0, dy0
 
 
 sol = odeint (diff_func, v0, x)
 
 plt.plot(x, sol[:, 0], 'g')
+
 plt.legend()
 plt.show()
-
-
-
-
-
-
-
 
 
 
