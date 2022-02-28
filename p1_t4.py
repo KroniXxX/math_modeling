@@ -1,9 +1,13 @@
-a = [1,5,'good','bad']
-print (type(a))
-b = [9,'Blue','red',11]
-print (type (b))
-print (a[1] + b[3])
-print (a[2] + b[2])
-print (a[0] * b[0])
-print (a[1] ** b[3])
-print (a + b)
+mec=input()
+x=input()
+A=[x]
+a=1
+y=0
+for i in range(len(mec)):
+    if A[a]==5:
+        y=y+1                            
+        a=a+1
+    else:
+        a=a+1
+    print(y)
+print(len(mec))
