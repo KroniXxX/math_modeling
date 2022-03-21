@@ -10,7 +10,7 @@ def diff_func(fff, arg):
   t =arg
   dydt = j
   djdt = np.sqrt(1 - j**2)
-  return dydt , dpdt
+  return dydt , djdt
 
 
 
