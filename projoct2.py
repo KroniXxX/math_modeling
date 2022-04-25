@@ -4,54 +4,96 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 frames = 365
+
 seconds_in_year = 365 * 24 * 60 * 60
+
 years = 2
+
 t = np.linspace(0, years*seconds_in_year, frames)
 
-def move_func(s, t):
-    (x1, v_x1, y1, v_y1) = s
 
-    dxdt1 = v_x1
-    dv_xdt1 = - G * m * x1 / (x1**2 + y1**2)**1.5
-    dydt1 = v_y1
-    dv_ydt1 = - G * m * y1 / (x1**2 + y1**2)**1.5
+def move_func(s, t):
   
-    return (dxdt1, dv_xdt1, dydt1, dv_ydt1)
+    (x, v_x, y, v_y, m) = s
+
+    dxdt = v_x
+  
+    dv_xdt = - G * ms * x / (x**2 + y**2)**1.5
+  
+    dydt = v_y
+
+    dv_ydt = - G * ms * y / (x**2 + y**2)**1.5
+  
+    #dmdt= -(((3*m*p/4*np.pi)**2/3)*Qs)/(4 * d**2*Qw)
+
+    dist = (x**2 + y**2)**0.5
+    dmdt = - (1 - albedo)*(Qs * (np.pi*(3*m/4*np.pi*p)**(2/3))/(4*np.pi*(dist)**2))/Qw
+    
+  
+  
+    return (dxdt, dv_xdt, dydt, dv_ydt, dmdt ) 
+  
 G = 6.67 * 10**(-11)
-m = 1.98 * 10**(30)
+
+ms = 1.98 * 10**(30)
+
+cm = 2.2 *10**14
+#масса каметы  
+p=900
 
 a = np.pi / 3 +np.pi
+
 v= 40000
 
+tn = - 150
+
 x10 = 0.5* (10 **11)
+
 v_x10 = v * np.sin(a) 
+
 y10 =  200 * (10 **9)
+
 v_y10 = v* np.cos(a)
 
+c = 2100
 
+albedo = 0.97
 
-s0 = (x10, v_x10, y10, v_y10)
+Qw = (((200-tn) * c* 1)+(2300 * 1000))/1
+
+Qs = 3.828*10**26
+
+d = 150 *10**9
+
+s0 = (x10, v_x10, y10, v_y10,cm)
+
 sol = odeint(move_func, s0, t)
+
+for i in range(frames):
+  print(f"t: {t[i]} | m: {sol[i,4]}")
+
 def solve_func(i, key):
     
     if key == 'point':
-        x1 = sol[i, 0]
-        y1 = sol[i, 2]
+        x = sol[i, 0]
+        y = sol[i, 2]
         
         
     else:
-        x1 = sol[:i, 0]
-        y1 = sol[:i, 2]
+        x = sol[:i, 0]
+        y = sol[:i, 2]
         
-    return ((x1, y1), )
+    return ((x, y), )
 
-fig, ax = plt.subplots()
-
-ball1, = plt.plot([], [], 'o', color='b')
-ball_line1, = plt.plot([], [], '-', color='b')
+fig, ax = plt.subplots(2)
 
 
-plt.plot([0], [0], 'o', color='y', ms=20)
+ball1, = ax[0].plot([], [], 'o', color='b')
+ball_line1, = ax[0].plot([], [], '-', color='b')
+
+
+ax[0].plot([0], [0], 'o', color='y', ms=20)
+
 
 def animate(i):
   ball1.set_data(solve_func(i, 'point')[0])
@@ -62,12 +104,16 @@ ani = FuncAnimation(fig,
                     frames=frames,
                     interval=30)
 
-plt.axis('equal')
+ax[0].axis('equal')
 edge = 1.5 *  y10
-ax.set_xlim(-edge, edge)
-ax.set_ylim(-edge, edge)
+
+ax[0].set_xlim(-edge, edge)
+ax[0].set_ylim(-edge, edge)
 
 ani.save('123.gif')
+
+ax[1].plot(t, sol[:,4])
+plt.show()
 
 
 

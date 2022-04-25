@@ -1,4 +1,6 @@
-print (type('x ="Hello word!'))
-print (type(3+4))
-print (type(3/4))
-print (type([1,2,5,10,100]))
+
+p =1.367 * (10**3)
+s = 1
+d = 150 *10**9
+q= p*4*3.1416*d**2
+print (q)
